@@ -1,0 +1,42 @@
+{% extends 'todolist/base.html' %}
+{% block body_block %}
+
+			<h1>Update Task</h1>
+			<form  method="POST"  enctype="multipart/form-data" action="{% url 'todolist:update_task' %}">
+				{% csrf_token %}
+				<div class="col-1">
+					<input type="hidden" id="todo_id" name="todo_id" tabindex="1" required value="{{ todo.id }}">
+					<label>
+					Title
+					<input type="text" placeholder="Enter the title" id="title" name="title" tabindex="1" required value="{{ todo.title }}">
+					</label>
+				</div>
+				<div class="col-1">
+					<label>
+					Description
+					<input type="text" placeholder="Enter the description" id="desc" name="description" tabindex="1"  required value="{{ todo.description }}"></input>
+					</label>
+				</div>
+
+				<div class="col-2">
+					<label>
+					Reminder Date
+					<input type="date" placeholder="Enter the date" id="date" name="date" tabindex="1"  required value="{{ date }}"></input>
+					</label>
+
+				</div>
+				<div class="col-2">
+					<label>
+					Reminder Time
+					<input type="time" placeholder="Enter the time" id="time" name="time" tabindex="1" required value="{{ time }}"></input>
+					</label>
+
+				</div>
+				<div class="col-submit">
+					<button class="submitbtn">Update Task</button>
+				</div>
+			</form>
+			{% if success %}
+				<div id='msg' style='background-color:#8ab959;'>Task Updated Successfully</div>
+			{% endif %}
+{% endblock %}
